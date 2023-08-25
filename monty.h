@@ -1,3 +1,14 @@
+#ifndef MONTY_H
+#define MONTY_H
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <string.h>
+#include <ctype.h>
+
+
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -28,3 +39,27 @@ typedef struct instruction_s
   char *opcode;
   void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+
+
+/**
+ * struct bus_s - variables -args
+ * @arg: value
+ * @file: pointer to monty file
+ * @content: line content
+ * @lifi: flag change stack <-> queue
+ * Description: carries values through the program
+ */
+typedef struct bus_s
+{
+  char *arg;
+  FILE *file;
+  char *content;
+  int lifi;
+}bus_t;
+
+extern bus_t bus;
+
+void divide(stack_t **tete, unsigned int count);
+void free_stack(stack_t *tete);
+
+#endif
