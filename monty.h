@@ -1,5 +1,6 @@
 #ifndef MONTY_H
 #define MONTY_H
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>
@@ -41,25 +42,31 @@ typedef struct instruction_s
 } instruction_t;
 
 
-/**
- * struct bus_s - variables -args
- * @arg: value
- * @file: pointer to monty file
- * @content: line content
- * @lifi: flag change stack <-> queue
- * Description: carries values through the program
+/** struct flux_s - contenir les variables
+ * @fic: fichier qui connect le flux au fichier
+ * @ligne: chaine qui sera la ligne de texte lu depuis le flux
+ *
+ * Description: contenir les variables depuis un flux de
+ * fichiers
  */
-typedef struct bus_s
+
+typedef struct flux_s
 {
-  char *arg;
-  FILE *file;
-  char *content;
-  int lifi;
-}bus_t;
+  FILE *fic;
+  char *ligne;
+} flux_t;
 
-extern bus_t bus;
+extern flux_t *arguments;
 
-void divide(stack_t **tete, unsigned int count);
-void free_stack(stack_t *tete);
+/** natives functions */
+void validate_args(int argc);
+void init_args(void);
+void malloc_failure(void);
+void flux_failed(char *ficName);
+void get_flux(char *ficName);
+
+FILE *fdopen(int fd, const char *mode);
+ssize_t getline(char **lineptr, size_t *n, FILE *stream);
+int dprintf(int fd, const char *format, ...);
 
 #endif
