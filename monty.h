@@ -54,6 +54,10 @@ typedef struct flux_s
 {
   FILE *fic;
   char *ligne;
+  unsigned int nbre_ligne;
+  char **tokens;
+  int n_tokens;
+  instruction_t *instruction;
 } flux_t;
 
 extern flux_t *arguments;
@@ -64,9 +68,43 @@ void init_args(void);
 void malloc_failure(void);
 void flux_failed(char *ficName);
 void get_flux(char *ficName);
+void lib_args(void);
+void free_args();
+void get_ins(void);
+void tokens(void);
+void run_ins(void);
+void ins_failed(void);
+void free_tokens(void);
+void fermer_flux(void);
+
+
+
+
+
 
 FILE *fdopen(int fd, const char *mode);
 ssize_t getline(char **lineptr, size_t *n, FILE *stream);
 int dprintf(int fd, const char *format, ...);
+
+
+
+void free_stack(stack_t *head);
+void f_pop(stack_t **head, unsigned int counter);
+void f_swap(stack_t **head, unsigned int counter);
+void f_add(stack_t **head, unsigned int counter);
+void f_nop(stack_t **head, unsigned int counter);
+void f_sub(stack_t **head, unsigned int counter);
+void f_div(stack_t **head, unsigned int counter);
+void f_mul(stack_t **head, unsigned int counter);
+void f_mod(stack_t **head, unsigned int counter);
+void f_pchar(stack_t **head, unsigned int counter);
+void f_pstr(stack_t **head, unsigned int counter);
+void f_rotl(stack_t **head, unsigned int counter);
+void f_rotr(stack_t **head, __attribute__((unused)) unsigned int counter);
+void addnode(stack_t **head, int n);
+void addqueue(stack_t **head, int n);
+void f_queue(stack_t **head, unsigned int counter);
+void f_stack(stack_t **head, unsigned int counter);
+
 
 #endif

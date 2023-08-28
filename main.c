@@ -18,8 +18,14 @@ get_flux(argv[1]);
 
 while (getline(&arguments->ligne, &n, arguments->fic) != -1)
 {
-printf("%s", arguments->ligne);
+  arguments->nbre_ligne += 1;
+  tokens();
+  get_ins();
+  run_ins();
+  free_tokens();
 }
+fermer_flux();
+free_args();
 
 return (0);
 }

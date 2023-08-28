@@ -10,6 +10,7 @@
 void flux_failed(char *ficName)
 {
 dprintf(2, "Error: Can't open file %s\n", ficName);
+lib_args();
 exit(EXIT_FAILURE);
 }
 
