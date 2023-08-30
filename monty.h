@@ -57,6 +57,9 @@ typedef struct flux_s
   unsigned int nbre_ligne;
   char **tokens;
   int n_tokens;
+  stack_t *head;
+  int taille;
+  int stack;
   instruction_t *instruction;
 } flux_t;
 
@@ -76,7 +79,7 @@ void run_ins(void);
 void ins_failed(void);
 void free_tokens(void);
 void fermer_flux(void);
-
+int est_nbre(char *str);
 
 
 
@@ -89,22 +92,23 @@ int dprintf(int fd, const char *format, ...);
 
 
 void free_stack(stack_t *head);
-void f_pop(stack_t **head, unsigned int counter);
-void f_swap(stack_t **head, unsigned int counter);
-void f_add(stack_t **head, unsigned int counter);
-void f_nop(stack_t **head, unsigned int counter);
-void f_sub(stack_t **head, unsigned int counter);
-void f_div(stack_t **head, unsigned int counter);
-void f_mul(stack_t **head, unsigned int counter);
-void f_mod(stack_t **head, unsigned int counter);
-void f_pchar(stack_t **head, unsigned int counter);
-void f_pstr(stack_t **head, unsigned int counter);
-void f_rotl(stack_t **head, unsigned int counter);
-void f_rotr(stack_t **head, __attribute__((unused)) unsigned int counter);
+void f_pop(stack_t **head, unsigned int compt);
+void f_swap(stack_t **head, unsigned int compt);
+void f_add(stack_t **head, unsigned int compt);
+void f_nop(stack_t **head, unsigned int compt);
+void f_sub(stack_t **head, unsigned int compt);
+void f_div(stack_t **head, unsigned int compt);
+void f_mul(stack_t **head, unsigned int compt);
+void f_mod(stack_t **head, unsigned int compt);
+void f_pchar(stack_t **head, unsigned int compt);
+void f_pstr(stack_t **head, unsigned int compt);
+void f_rotl(stack_t **head, unsigned int compt);
+void f_rotr(stack_t **head, __attribute__((unused)) unsigned int compt);
 void addnode(stack_t **head, int n);
 void addqueue(stack_t **head, int n);
-void f_queue(stack_t **head, unsigned int counter);
-void f_stack(stack_t **head, unsigned int counter);
+void f_queue(stack_t **head, unsigned int compt);
+void f_stack(stack_t **head, unsigned int compt);
 
-
+void push(stack_t **head, unsigned int compt);
+void pall(stack_t **stack, unsigned int compt);
 #endif
